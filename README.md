@@ -4,26 +4,26 @@
 ![Build](https://img.shields.io/github/actions/workflow/status/assemblyai/assemblyai-cli/release.yml)
 ![License](https://img.shields.io/github/license/assemblyai/assemblyai-cli)
 
-The AssemblyAI CLI helps you quickly test our latest AI models right from your terminal, with minimal installation required.
+AssemblyAI CLI는 터미널에서 바로 최신 AI 모델을 빠르게 테스트할 수 있도록 도와주는 도구입니다. 최소한의 설치만으로 사용할 수 있습니다.
 
 ![Thumbnail](./assets/thumbnail.png)
 
-## Installation
+## 설치 방법
 
-The CLI is simple to install, supports a wide range of operating systems like macOS, Windows, and Linux, and makes it more seamless to build with AssemblyAI.
+CLI는 설치가 간단하며, macOS, Windows, Linux 등 다양한 운영 체제를 지원합니다. AssemblyAI를 사용한 개발을 더욱 원활하게 만들어줍니다.
 
-### Homebrew
+### Homebrew를 사용한 설치
 
-If you're on macOS, you can install it using Homebrew:
+macOS를 사용하는 경우 Homebrew를 통해 설치할 수 있습니다:
 
 ```bash
 brew tap assemblyai/assemblyai
 brew install assemblyai
 ```
 
-### macOS or Linux
+### macOS 또는 Linux
 
-If you don't have Homebrew installed, or are running Linux:
+Homebrew가 설치되어 있지 않거나 Linux를 사용하는 경우:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/AssemblyAI/assemblyai-cli/main/install.sh)"
@@ -31,16 +31,16 @@ If you don't have Homebrew installed, or are running Linux:
 
 ### Windows
 
-The CLI is available on Windows either via Scoop or by script.
+Windows에서는 Scoop 또는 스크립트를 통해 CLI를 사용할 수 있습니다.
 
-Via Scoop:
+Scoop을 통한 설치:
 
 ```powershell
 scoop bucket add assemblyai https://github.com/assemblyai/scoop-assemblyai.git
 scoop install assemblyai
 ```
 
-Or via PowerShell as an administrator:
+또는 관리자 권한으로 PowerShell을 통한 설치:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -48,252 +48,253 @@ irm https://raw.githubusercontent.com/AssemblyAI/assemblyai-cli/main/install.ps1
 New-Alias -Name assemblyai -Value $Env:Programfiles/AssemblyAI/assemblyai.exe
 ```
 
-## Getting started
+## 시작하기
 
-Get started by configuring the CLI with your AssemblyAI token. If you don't yet have an account, create one [here](https://www.assemblyai.com/app).
+AssemblyAI 토큰으로 CLI를 구성하여 시작하세요. 아직 계정이 없다면 [여기](https://www.assemblyai.com/app)에서 생성할 수 있습니다.
 
 ```bash
 assemblyai config [token]
 ```
 
-This command will validate your account, and store your token safely in `~/.config/assemblyai/config.toml` later to be used when transcribing files.
+이 명령은 계정을 검증하고 토큰을 `~/.config/assemblyai/config.toml`에 안전하게 저장하여 나중에 파일을 전사할 때 사용됩니다.
 
-You can now transcribe local files and remote URLs.
+이제 로컬 파일과 원격 URL을 전사할 수 있습니다.
 
 ```bash
 assemblyai transcribe ./file.mp3 --auto_highlights --entity_detection
 ```
 
-## Usage
+## 사용법
 
-Installing the CLI provides access to the `assemblyai` command:
+CLI를 설치하면 `assemblyai` 명령에 액세스할 수 있습니다:
 
 ```bash
 assemblyai [command] [--flags]
 ```
 
-## Commands
+## 명령어
 
-### Transcribe
+### Transcribe (전사)
 
-With the CLI, you can transcribe local files and remote URLs.
+CLI를 사용하여 로컬 파일과 원격 URL을 전사할 수 있습니다.
 
 ```bash
-assemblyai transcribe [local file | remote url] [--flags]
+assemblyai transcribe [로컬 파일 | 원격 URL] [--flags]
 ```
 
 <details>
-  <summary>Flags</summary>
+  <summary>플래그 옵션</summary>
   
   > **-j, --json**  
-  > default: false  
-  > example: `-j` or `--json`  
-  > If true, the CLI will output the JSON.
+  > 기본값: false  
+  > 예시: `-j` 또는 `--json`  
+  > true로 설정하면 CLI가 JSON을 출력합니다.
 
 > **-p, --poll**  
-> default: true  
-> example: `-p` or `--poll`  
-> The CLI will poll the transcription every 3 seconds until it's complete.
+> 기본값: true  
+> 예시: `-p` 또는 `--poll`  
+> CLI가 전사가 완료될 때까지 3초마다 폴링합니다.
 
 > **-s, --auto_chapters**  
-> default: false  
-> example: `-s` or `--auto_chapters`  
-> A "summary over time" for the audio file transcribed.
+> 기본값: false  
+> 예시: `-s` 또는 `--auto_chapters`  
+> 전사된 오디오 파일에 대한 "시간별 요약"을 생성합니다.
 
 > **-a, --auto_highlights**  
-> default: false  
-> example: `-a` or `--auto_highlights`  
-> Automatically detect important phrases and words in the text.
+> 기본값: false  
+> 예시: `-a` 또는 `--auto_highlights`  
+> 텍스트에서 중요한 구문과 단어를 자동으로 감지합니다.
 
 > **-c, --content_moderation**  
-> default: false  
-> example: `-c` or `--content_moderation`  
-> Detect if sensitive content is spoken in the file.
+> 기본값: false  
+> 예시: `-c` 또는 `--content_moderation`  
+> 파일에서 민감한 내용이 포함되어 있는지 감지합니다.
 
 > **-d, --dual_channel**  
-> default: false  
-> example: `-d` or `--dual_channel`  
-> Enable dual channel
+> 기본값: false  
+> 예시: `-d` 또는 `--dual_channel`  
+> 듀얼 채널 활성화
 
 > **-D, --disfluencies**  
-> default: false  
-> example: `-D` or `--disfluencies`  
-> Include Filler Words in your transcript
+> 기본값: false  
+> 예시: `-D` 또는 `--disfluencies`  
+> 전사에 채움말(Filler Words) 포함
 
 > **-e, --entity_detection**  
-> default: false  
-> example: `-e` or `--entity_detection`  
-> Identify a wide range of entities that are spoken in the audio file.
+> 기본값: false  
+> 예시: `-e` 또는 `--entity_detection`  
+> 오디오 파일에서 언급된 다양한 개체를 식별합니다.
 
 > **-f, --format_text**  
-> default: true  
-> example: `-f=false` or `--format_text=false`  
-> Enable text formatting
+> 기본값: true  
+> 예시: `-f=false` 또는 `--format_text=false`  
+> 텍스트 서식 활성화
 
 > **-u, --punctuate**  
-> default: true  
-> example: `-u=false` or `--punctuate=false`  
-> Enable automatic punctuation
+> 기본값: true  
+> 예시: `-u=false` 또는 `--punctuate=false`  
+> 자동 구두점 활성화
 
 > **-r, --redact_pii**  
-> default: false  
-> example: `-r` or `--redact_pii`  
-> Remove personally identifiable information from the transcription.
+> 기본값: false  
+> 예시: `-r` 또는 `--redact_pii`  
+> 전사에서 개인 식별 정보를 제거합니다.
 
 > **-i, --redact_pii_policies**  
-> default: drug,number_sequence,person_name  
-> example: `-i medical_process,nationality` or `--redact_pii_policies medical_process,nationality`  
-> The list of PII policies to redact ([source](https://www.assemblyai.com/docs/Models/pii_redaction)), comma-separated. Required if the redact_pii flag is true.
+> 기본값: drug,number_sequence,person_name  
+> 예시: `-i medical_process,nationality` 또는 `--redact_pii_policies medical_process,nationality`  
+> 편집할 PII 정책 목록 ([소스](https://www.assemblyai.com/docs/Models/pii_redaction)), 쉼표로 구분. redact_pii 플래그가 true인 경우 필수입니다.
 
 > **-x, --sentiment_analysis**  
-> default: false  
-> example: `-x` or `--sentiment_analysis`  
-> Detect the sentiment of each sentence of speech spoken in the file.
+> 기본값: false  
+> 예시: `-x` 또는 `--sentiment_analysis`  
+> 파일에서 각 문장의 감정을 감지합니다.
 
 > **-l, --speaker_labels**  
-> default: true  
-> example: `-l=false` or `--speaker_labels=false`  
-> Automatically detect the number of speakers in the file.
+> 기본값: true  
+> 예시: `-l=false` 또는 `--speaker_labels=false`  
+> 파일에서 화자 수를 자동으로 감지합니다.
 
 > **-t, --topic_detection**  
-> default: false  
-> example: `-t` or `--topic_detection`  
-> Label the topics that are spoken in the file.
+> 기본값: false  
+> 예시: `-t` 또는 `--topic_detection`  
+> 파일에서 언급된 주제에 레이블을 지정합니다.
 
 > **-w, --webhook_url**  
-> example: `--webhook_url "https://example.com/"`  
-> Receive a webhook once your transcript is complete.
+> 예시: `--webhook_url "https://example.com/"`  
+> 전사가 완료되면 웹훅을 받습니다.
 
 > **-b, --webhook_auth_header_name**  
-> example: `--webhook_auth_header_name "Authorization"`  
-> Containing the header's name which will be inserted into the webhook request.
+> 예시: `--webhook_auth_header_name "Authorization"`  
+> 웹훅 요청에 삽입될 헤더 이름을 포함합니다.
 
 > **-o, --webhook_auth_header_value**  
-> example: `--webhook_auth_header_value "foo:bar"`  
-> Receive a webhook once your transcript is complete.
+> 예시: `--webhook_auth_header_value "foo:bar"`  
+> 웹훅 요청에 포함될 헤더 값입니다.
 
 > **-n, --language_detection**  
-> default: false  
-> example: `-n` or `--language_detection`  
-> Automatic identify the dominant language that’s spoken in an audio file.
-> [Here](https://www.assemblyai.com/docs/Models/speech_recognition#automatic-language-detection) you can view the ALD list for supported languages
+> 기본값: false  
+> 예시: `-n` 또는 `--language_detection`  
+> 오디오 파일에서 주로 사용되는 언어를 자동으로 식별합니다.
+> [여기](https://www.assemblyai.com/docs/Models/speech_recognition#automatic-language-detection)에서 지원되는 언어에 대한 ALD 목록을 볼 수 있습니다.
 
 > **-g, --language_code**  
-> example: `-g es` or `--language_code es`  
-> Manually specify the language of the speech in your audio file.
-> Click [here](https://www.assemblyai.com/docs/Concepts/faq#supported-languages) to view all the supported languages
+> 예시: `-g es` 또는 `--language_code es`  
+> 오디오 파일의 음성 언어를 수동으로 지정합니다.
+> [여기](https://www.assemblyai.com/docs/Concepts/faq#supported-languages)를 클릭하여 지원되는 모든 언어를 확인하세요.
 
 > **-m, --summarization**  
-> default: false  
-> example: `-m` or `--summarization`  
-> Generate a single abstractive summary of the entire audio.
+> 기본값: false  
+> 예시: `-m` 또는 `--summarization`  
+> 전체 오디오의 단일 추상적 요약을 생성합니다.
 
 > **-q, --summary_model**
-> default: bullets  
-> example: `-q conversational` or `--summary_model conversational`  
-> Type of summary generated.
-> Click [here](https://www.assemblyai.com/docs/Models/summarization) to view all the supported types
+> 기본값: bullets  
+> 예시: `-q conversational` 또는 `--summary_model conversational`  
+> 생성되는 요약의 유형입니다.
+> [여기](https://www.assemblyai.com/docs/Models/summarization)를 클릭하여 지원되는 모든 유형을 확인하세요.
 
 > **-y, --summary_type**
-> default: bullets  
-> example: `-y paragraph` or `--summary_type paragraph`  
-> Model of summary generated.
-> Click [here](https://www.assemblyai.com/docs/Models/summarization) to view all the supported types
+> 기본값: bullets  
+> 예시: `-y paragraph` 또는 `--summary_type paragraph`  
+> 생성되는 요약의 모델입니다.
+> [여기](https://www.assemblyai.com/docs/Models/summarization)를 클릭하여 지원되는 모든 유형을 확인하세요.
 
 > **-k, --word_boost**
-> example: `-k "sally mcmanus,the IQEZ iPhone app"` or `--word_boost "sally mcmanus,the IQEZ iPhone app"`  
-> Any term included will have its likelihood of being transcribed boosted.
+> 예시: `-k "sally mcmanus,the IQEZ iPhone app"` 또는 `--word_boost "sally mcmanus,the IQEZ iPhone app"`  
+> 포함된 모든 용어의 전사 가능성이 높아집니다.
 
 > **-z, --boost_param**
-> example: `-z high` or `--word_boost high`  
-> Control how much weight should be applied to your boosted keywords/phrases. This value can be either low, default, or high.
+> 예시: `-z high` 또는 `--boost_param high`  
+> 부스트된 키워드/구문에 적용할 가중치를 제어합니다. 이 값은 low, default 또는 high가 될 수 있습니다.
+
 > **--custom_spelling**
-> example: `--custom_spelling "[{\"from\": [\"ariana\"], \"to\": \"Arianna\"}]"` or `--custom_spelling ./custom_spelling.json`
-> Specify how words are spelled or formatted in the transcript text.
+> 예시: `--custom_spelling "[{\"from\": [\"ariana\"], \"to\": \"Arianna\"}]"` 또는 `--custom_spelling ./custom_spelling.json`
+> 전사 텍스트에서 단어의 철자나 형식을 지정합니다.
 
 > **--srt**  
-> default: false  
-> example: `--srt`  
-> Create an SRT file named `[id].srt` in the current directory.
+> 기본값: false  
+> 예시: `--srt`  
+> 현재 디렉토리에 `[id].srt` 파일을 생성합니다.
 
 </details>
 
-### Get
+### Get (가져오기)
 
-If you're not polling the transcription, you can fetch it later:
+전사를 폴링하지 않는 경우 나중에 가져올 수 있습니다:
 
 ```bash
 assemblyai get [id]
 ```
 
 <details>
-  <summary>Flags</summary>
+  <summary>플래그 옵션</summary>
   
   > **-j, --json**  
-  > default: false  
-  > example: `--json` or `--json=true`  
-  > If true, the CLI will output the JSON.
+  > 기본값: false  
+  > 예시: `--json` 또는 `--json=true`  
+  > true로 설정하면 CLI가 JSON을 출력합니다.
 
 > **-p, --poll**  
-> default: true  
-> example: `--poll=false`  
-> The CLI will poll the transcription every 3 seconds until it's complete.
+> 기본값: true  
+> 예시: `--poll=false`  
+> CLI가 전사가 완료될 때까지 3초마다 폴링합니다.
 
 > **--srt**  
-> default: false  
-> example: `--srt`  
-> Create an SRT file named `[id].srt` in the current directory.
+> 기본값: false  
+> 예시: `--srt`  
+> 현재 디렉토리에 `[id].srt` 파일을 생성합니다.
 
 </details>
 
-### Exporting Output to a File
+### 출력을 파일로 내보내기
 
-You can export the output of AssemblyAI CLI commands to a file by using [shell redirection](https://www.gnu.org/software/bash/manual/html_node/Redirections.html). To export the output to a text file, use the `>` operator followed by the name of the file you want to create.
+[셸 리디렉션](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)을 사용하여 AssemblyAI CLI 명령의 출력을 파일로 내보낼 수 있습니다. 출력을 텍스트 파일로 내보내려면 `>` 연산자와 생성하려는 파일 이름을 사용합니다.
 
 ```bash
 assemblyai get [id] > transcript.txt
 ```
 
-To save the raw JSON response from the API, you can do this instead:
+API의 원시 JSON 응답을 저장하려면 다음과 같이 할 수 있습니다:
 
 ```bash
 assemblyai get [id] -j > transcript.json
 ```
 
-Note that if the file you are exporting to already exists, its contents will be overwritten. If you want to append the output to an existing file, use the `>>` operator instead of `>`.
+내보내는 파일이 이미 존재하는 경우 해당 내용이 덮어쓰여집니다. 기존 파일에 출력을 추가하려면 `>` 대신 `>>` 연산자를 사용하세요.
 
-## Contributing
+## 기여하기
 
-We're more than happy to welcome new contributors. If there's something you'd like to fix or improve, start by [creating an issue](https://github.com/AssemblyAI/assemblyai-cli/issues). Please make sure to follow our [code of conduct](https://github.com/AssemblyAI/assemblyai-cli/blob/main/CODE_OF_CONDUCT.md).
+새로운 기여자를 환영합니다. 수정하거나 개선하고 싶은 것이 있다면 먼저 [이슈를 생성](https://github.com/AssemblyAI/assemblyai-cli/issues)해 주세요. [행동 강령](https://github.com/AssemblyAI/assemblyai-cli/blob/main/CODE_OF_CONDUCT.md)을 준수해 주시기 바랍니다.
 
-## Telemetry
+## 원격 측정
 
-The AssemblyAI CLI includes a telemetry feature that collects usage data and is enabled by default.
+AssemblyAI CLI에는 사용 데이터를 수집하는 원격 측정 기능이 포함되어 있으며 기본적으로 활성화되어 있습니다.
 
-To opt out of telemetry, set the telemetry variable in the `config.toml` file to false.
+원격 측정을 비활성화하려면 `config.toml` 파일의 telemetry 변수를 false로 설정하세요.
 
-## Upgrade
+## 업그레이드
 
-Our team regularly releases updates to ensure world-class service, so make sure to update your CLI when a new release is available. You can do so by running the same commands as shown on the [Installation](#installation) section, or, if you've installed using brew, run:
+저희 팀은 세계적인 수준의 서비스를 보장하기 위해 정기적으로 업데이트를 릴리스하므로 새 릴리스가 있을 때 CLI를 업데이트하세요. [설치](#설치-방법) 섹션에 표시된 것과 동일한 명령을 실행하거나 brew를 사용하여 설치한 경우 다음을 실행합니다:
 
 ```bash
 brew upgrade assemblyai
 ```
 
-## Feedback
+## 피드백
 
-Please don't hesitate to [let us know what you think](https://forms.gle/oQgktMWyL7xStH2J8)!
+[의견을 알려주세요](https://forms.gle/oQgktMWyL7xStH2J8)!
 
-## Uninstall
+## 제거
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/AssemblyAI/assemblyai-cli/main/uninstall.sh)"
 ```
 
-We'd love to understand why you're uninstalling the CLI, and what we can do to improve it. Feel free to [reach out](https://forms.gle/oQgktMWyL7xStH2J8).
+CLI를 제거하는 이유와 개선할 수 있는 부분을 알고 싶습니다. [연락 주세요](https://forms.gle/oQgktMWyL7xStH2J8).
 
-## License
+## 라이선스
 
 Copyright (c) AssemblyAI. All rights reserved.
 
-Licensed under the [Apache License 2.0 license](https://github.com/AssemblyAI/assemblyai-cli/blob/main/LICENSE).
+[Apache License 2.0 라이선스](https://github.com/AssemblyAI/assemblyai-cli/blob/main/LICENSE)에 따라 라이선스가 부여됩니다.
